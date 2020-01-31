@@ -8,7 +8,14 @@ module.exports = function(app){
     fs.readFile('../names1.txt','utf-8', function(err, data){
       if(err) throw err;
       console.log(data);
-      //res.end( data );
+      res.end( data );
+    });
+  });
+
+  app.post('/dirpath', function(req, res){
+    console.log(req.body.path);
+    fs.readdir(req.body.path, function(err, filelist){
+      console.log(filelist);
     });
   });
 };
