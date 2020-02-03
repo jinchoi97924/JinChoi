@@ -13,9 +13,22 @@ module.exports = function(app){
   });
 
   app.post('/dirpath', function(req, res){
-    console.log(req.body.path);
+
+    //req=object
+    let dirs = new Array();
+
     fs.readdir(req.body.path, function(err, filelist){
-      console.log(filelist);
+      //console.log(typeof(filelist));
+
+      for(var count in filelist){
+          let stats = fs.statSync(req.body.path + "\\" + filelist[count]);
+
+          if(!stats.isFile()) {
+            dirs.push( filelist.splice(count,1));
+          }
+        }
+      res.send(dirs);
+      res.end();
     });
   });
 };

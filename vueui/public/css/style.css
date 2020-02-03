@@ -110,6 +110,7 @@ section{
   background-color: #E4F5EF;
   border-radius: 3px;
   margin-right: 16px;
+  padding-left: 10px;
 }
 
 .btnRe{
@@ -126,7 +127,7 @@ section{
 .fileList{
   overflow-y: scroll;
   max-width: 1100px;
-  /*width: 100%;*/
+  width: 100%;
   position: relative;
   margin: 0px auto;
   text-align: left;
@@ -134,19 +135,23 @@ section{
 }
 
 .fileList ul{
+  max-width: 1100px;
   list-style: none;
   text-align: left;
   margin: 0;
   padding:0;
 }
 .fileList li{
-  height: 50px;
+  height: 55px;
   list-style: none;
   text-align: left;
   border-radius: 3px;
   margin: 0;
-  padding:0;
+  padding:0 0 0 10px;;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+
 }
 
 .fileList li:hover {

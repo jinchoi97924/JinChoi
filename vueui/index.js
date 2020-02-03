@@ -1,5 +1,9 @@
 var express = require('express');
 var app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 var router = require('./router/main')(app);
 
 app.set('views', __dirname + '/views');
@@ -11,6 +15,3 @@ var server = app.listen(3000, function(){
 });
 
 app.use(express.static('public'));
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
