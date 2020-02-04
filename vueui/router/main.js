@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var os = require('os');
 
 module.exports = function(app){
   app.get('/', function(req, res){
@@ -19,20 +20,24 @@ module.exports = function(app){
 
     fs.readdir(req.body.path, function(err, filelist){
       //console.log(typeof(filelist));
-      try{
         for(var count in filelist){
-
-          let stats = fs.statSync(path.resolve(req.body.path,filelist[count]));
-          if(!stats.isFile()) {
-            dirs.push( filelist[count]); /**/
+          try{
+            let stats = fs.statSync(path.resolve(req.body.path,filelist[count]));
+            if(!stats.isFile()) {
+              dirs.push(filelist[count]); /**/
+            }
+          }catch(e){
+            console.log(e);
           }
         }
-      }catch(e){
-        console.log(e);
-      }
 
       res.send(dirs);
       res.end();
     });
+  });
+
+  app.get('/homeDir', function(req, res){
+    res.send(os.homedir());
+    res.end();
   });
 };
