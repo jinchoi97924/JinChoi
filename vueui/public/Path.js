@@ -8,7 +8,6 @@ let fileList = document.querySelector(".fileListUl");
 let header = new Headers();
 header.append('Content-Type', 'application/json');
 
-
 //input.value =
 input.readOnly = true;
 
@@ -22,7 +21,7 @@ function sendPath(event){
 
   fetch('http://localhost:3000/homeDir')
     .then(function(res){
-      return res.text(); /**/
+      return res.text(); /*promise 정리!!*/
     })
     .then(function(text){
       console.log(text + " " + typeof(text));
@@ -47,7 +46,7 @@ function sendPath(event){
 let btnParent = document.querySelector(".btnParent").addEventListener("click", parentDir);
 
 function parentDir(event){
-  console.log("lastIndexOf '/' is " + input.value.lastIndexOf("/"));
+  //console.log("lastIndexOf '\\' is " + input.value.lastIndexOf("\\"));
 
   if(input.value.lastIndexOf("/") > 2){
     //input.value = input.value + "/";
@@ -82,7 +81,7 @@ function childDir(event){
   input.value = input.value.concat("/" + li.innerText);
   let body = { path: input.value };
 
-  //console.log(body);
+  console.log(body);
   fetch('http://localhost:3000/dirpath',{
     method: 'POST',
     headers: header,

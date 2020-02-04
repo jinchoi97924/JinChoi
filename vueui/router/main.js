@@ -37,7 +37,10 @@ module.exports = function(app){
   });
 
   app.get('/homeDir', function(req, res){
-    res.send(os.homedir());
+
+    homeDir = os.homedir().replace(/\\/gi, '/');
+    console.log(homeDir);
+    res.send(homeDir);
     res.end();
   });
 };
