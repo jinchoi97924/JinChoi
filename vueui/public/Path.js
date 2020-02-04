@@ -29,10 +29,12 @@ let btnParent = document.querySelector(".btnParent").addEventListener("click", p
 
 function parentDir(event){
   //console.log("lastIndexOf '/' is " + input.value.lastIndexOf("/"));
-  input.value = input.value.substring(0,input.value.lastIndexOf("/"));
 
-  if(input.value.lastIndexOf("/") < 2){
-    input.value = input.value + "//";
+  if(input.value.lastIndexOf("/") > 2){
+    //input.value = input.value + "/";
+    input.value = input.value.substring(0,input.value.lastIndexOf("/"));
+  }else{
+    input.value = input.value.substring(0,input.value.lastIndexOf("/")+1);
   }
 
   let body = { path: input.value };
@@ -91,10 +93,7 @@ function addDirs(fileList, text){
     newId++;
 
     fileList.appendChild(li);
-    //console.log(span.innerText + "/ " + li.id + "/ " + li.classList);
+    //console.log(span.innerText + "/push  " + li.id + "/ " + li.classList);
   }
-
-  let fileListLi = document.getElementsByClassName('fileListLi');
-
 
 };
